@@ -1,15 +1,20 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import pickle as pkl
 import google.generativeai as genai
+import pickle as pkl
 
-with open('model.pkl','rb') as f:
-    model = pkl.load(f)
+
+try:
+    with open("model.pkl", "rb") as f:
+        model = pkl.load(f)
+except FileNotFoundError:
+    st.error("model.pkl not found. Please upload the file or check your repository.")
+
 
 
 st.sidebar.title("Side Bar")
-option = st.sidebar.radio("Analysis", ["Home","Anylysis","Visualization","Predictoin"])
+option = st.sidebar.radio("Analysis", ["Home","Analysis","Visualization","Prediction"])
 
 def home():
     genai.configure(api_key = "AIzaSyD-Iyz1os4Mz3m93k9X7yRFXYPN1BsUHuA")
@@ -110,11 +115,11 @@ def prediction():
 
 if option == "Home":
     home()
-elif option == "Anylysis":
+elif option == "Analysis":
     analysis()
 elif option == "Visualization":
     visualization()
-elif option == "Predictoin":
+elif option == "Prediction":
     prediction()
 
 
