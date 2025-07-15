@@ -13,6 +13,16 @@ st.sidebar.title("Side Bar")
 option = st.sidebar.radio("Analysis", ["Home","Anylysis","Visualization","Predictoin"])
 
 def home():
+    genai.configure(api_key = "AIzaSyD-Iyz1os4Mz3m93k9X7yRFXYPN1BsUHuA")
+    model = genai.GenerativeModel("models/gemini-1.5-flash")
+
+    prompt = st.text_input("Ask Gemini Something: ")
+    button = st.button("Click me")
+    if button:
+        response = model.generate_content(prompt)
+        st.write(response.text)
+
+
     # abc = st.text_input("Enter Name: ")
     # if abc:
     #     st.write(f"Hello {abc}")
@@ -22,13 +32,15 @@ def home():
     # if shravani:
     #     st.write(f"your age is {shravani}")
 
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.markdown("Column 1")
-    with col2:
-        st.markdown("Column 2")
-    with col3:
-        st.markdown("Column 3")
+    # col1, col2, col3 = st.columns(3)
+    # with col1:
+    #     st.markdown("Column 1")
+    # with col2:
+    #     st.markdown("Column 2")
+    # with col3:
+    #     st.markdown("Column 3")
+
+
 
 
 def analysis():
